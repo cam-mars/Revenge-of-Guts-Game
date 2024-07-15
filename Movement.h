@@ -28,7 +28,7 @@ private:
     static const int length = 20;
 
     // Private methods
-    void CharacterMenu(const std::string& interaction, const std::string& option1, const std::string& invalidMsg);
+    void CharacterMenu(const string& interaction, const string& option1, const string& invalidMsg);
 
     // Private variables
     bool gameOver;
