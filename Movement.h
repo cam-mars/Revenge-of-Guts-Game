@@ -32,7 +32,7 @@ private:
 
     // Private variables
     bool gameOver;
-    int x, y, xTree, yTree, xIron, yIron, xcharNPC, ycharNPC, xPortal, yPortal;
+    int x, y, xTree, yTree, xRock, yRock, xcharNPC, ycharNPC, xPortal, yPortal;
 };
 
 #endif // MAP_H
