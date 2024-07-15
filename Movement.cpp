@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include "csci1300Library.h"
 #include "Movement.h"
 using namespace std;
 
@@ -9,7 +10,7 @@ using namespace std;
 bool gameOver;
 const int width = 150;
 const int length = 20;
-int x, y, xTree, yTree, xIron, yIron, xShed, yShed, xPortal, yPortal;
+int x, y, xTree, yTree, xRock, yRock, xcharNPC, ycharNPC, xPortal, yPortal;
 enum eMovement{
     Stop, left, right, down, up
 };
@@ -18,22 +19,21 @@ eMovement dir;
 void Setup(){
     //Don't let the charcter move before the user starts inputting the movement values
     gameOver = false;
-    dir = Stop;
     //Map Dimensions 
     x = width/4;
     y = length/2;
     //Randomly generate the objects around the map
-    xTree = rand() % width;
-    yTree = rand() % length;
+    xTree = 20;
+    yTree = 5;
 
-    xIron = rand() % width;
-    yIron = rand() % length;
+    xRock = 40;
+    yRock = 10;
 
-    xShed = rand() % width;
-    yShed = rand() % length;
+    xcharNPC = 60;//rand() % width;
+    ycharNPC = 15;//rand() % length;
 
-    xPortal = rand() % width;
-    yPortal = rand() % length;
+    xPortal = 80;
+    yPortal = 19;
 }
 
 void DrawMap(){
@@ -51,30 +51,40 @@ void DrawMap(){
     tree = "     \n      ... .::.\n     ..::::. .  .::.\n   .-            .-.\n  .=.             :.\n   :..   .: :.. ...:.\n    .=:...-...:.-*.\n   .:  ...\n      :. .:\n      .:- .:.\n      .::::.:... ";
     string rock;
     rock =  "..++;;:..      \n.+;:..+;;;:;;    \n.x++;.:;++;;:...  \n:: :..:.. :. .";
-    string NPC;
-    NPC = "    O\n /|\\n / \ ";
+    //string NPC;
+    //NPC = "    O\n /|\\n /  ";
+    //string charNPC;
+    //charNPC = "    O\n /|\\n / ";
+    //string playerOne;
+    //playerOne = "*##*%@%%%##**=-     \n+=#@@@*=%%%%%%%%%#*+ \n++#%%%%%%%**+*%%@%%+ \n-++=%%#**%#*-";           
+    //"\n+%%%#%@*+        \n##%%##%@#*#     \n:=@@@%%##@@%*@+     \n@@@@%%%%+%@#%%+     \n@@%%%%@%++%@@@+     \n-*@%%@@@%*%@@=      \n**@##*%*%*#%-       \n-:##%*-#%*#=         \n:%%=...%**+          \n*#....-%*- ";     
+    //"\n.+*++.....=*-.";
     
-    for (int i = 0; i < length; i++) 
-    {
+    //y coordinate
+    for (int i = 0; i < length; i++) {
+        //x coordinate
         for (int j = 0; j < width; j++) {
             if (j == 0) {
                 cout << "|";
             }
             if(i == y && j == x){
                 //Character Ascii Art
+                //cout << playerOne << endl;
             }
-            else if(i == yTree && j == xTree){
+            if(i == yTree && j == xTree){
                 //Tree Ascii Art
                 cout << tree << endl;
             }
-            else if(i == yIron && j == xIron){
+            if(i == yRock && j == xRock){
                 //Rock Art
                 cout << rock << endl;
             }
-            else if(i == yShed && j == xShed){
+            else if(i == ycharNPC && j == xcharNPC){
                 //Rock Art
+                //cout << charNPC << endl;
+
             }
-            else if(i == yPortal && j == xPortal){
+            if(i == yPortal && j == xPortal){
                 //Rock Art
             }
             else{
@@ -96,9 +106,27 @@ void DrawMap(){
 }
 
 void UserInput(){
+    char inputOne;
+    string interaction = "Press F to interact";
+
+    //If hit tree
+    if(x == xTree - 1 && y == yTree - 1){
+        CharacterMenu(interaction, "F", "Invalid selection");
+    }
+    //If hit iron
+    if(x == xRock - 1 && y == yRock - 1){
+        CharacterMenu(interaction, "F", "Invalid selection");
+    }
+    //If hit NPC
+    if(x == xcharNPC - 1 && y == ycharNPC - 1){
+        CharacterMenu(interaction, "F", "Invalid selection");
+    }
+    //If hit barracks
+    if(x == xTree - 1 && y == yTree - 1){
+        CharacterMenu(interaction, "F", "Invalid selection");
+    }
 }
 void MovementLogic(){
- 
 }
 
 int main(){
