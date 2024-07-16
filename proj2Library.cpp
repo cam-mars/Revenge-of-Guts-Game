@@ -1,7 +1,19 @@
 #include<iostream>
-#include<vector>
-#include "csci1300Library.h"
+#include"proj2Library.h"
 using namespace std;
+
+//ignore this stat display, I am tweaking it rn
+void statsDisplay(Hero myHero, Resources myResources){
+    int strongestMove = 0;
+    int i;
+    cout << "---------------------------" << endl;
+    cout << "|        Wood: " << myResources.getWood() << "       |" << endl;
+    cout << "|        Iron: " << myResources.getIron() << "       |"<< endl;
+    cout << "|        Health: " << myHero.getHealth() << "       |"<< endl;
+    cout << "|        Current top move: " << "       |"<< endl;
+    cout << myHero.getMoveRanking(1) << endl;
+    cout << "---------------------------" << endl;
+}
 void drawMap(int xPlayer, int yPlayer){
     //Draw our picture with vectors
     vector<string> map = {
@@ -27,7 +39,7 @@ void drawMap(int xPlayer, int yPlayer){
         "|                                                                                      |\n",
         "|                                                                                      |\n",
         "|                                                                                      |\n",
-        "========================================================================================",
+        "========================================================================================\n",
     };
     vector<string> playerOne{
         "    %@",
@@ -52,12 +64,13 @@ void drawMap(int xPlayer, int yPlayer){
         }
     }
 }
-int main(){
+int moveCharacter(){
     //variables
     int xPlayer = 1;
     int yPlayer = 1;
     char userInput;
     while(userInput != 'e'){
+        drawMap(xPlayer, yPlayer);
         userInput = CharacterMenu("Press wasd to move, or e to exit", "wasde", "Invalid input");
         switch(userInput){
             case 'w':
@@ -73,7 +86,6 @@ int main(){
                 xPlayer++;
                 break;
         }
-        drawMap(xPlayer, yPlayer);
     }
     return 0;
 }
