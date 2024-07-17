@@ -1,0 +1,107 @@
+#include "Project2Library.h"
+#include "Hero.h"
+#include "Resources.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+const string GREEN = "\033[32m";
+const string RESET = "\033[0m";
+
+// Ignore this stat display, I am tweaking it rn
+void statsDisplay(Hero myHero, Resources myResources){
+    int strongestMove = 0;
+    int i;
+    cout << "---------------------------" << endl;
+    cout << "|        Wood: " << myResources.getWood() << "       |" << endl;
+    cout << "|        Iron: " << myResources.getIron() << "       |" << endl;
+    cout << "|        Health: " << myHero.getHealth() << "       |" << endl;
+    cout << "|        Current top move: " << "       |" << endl;
+    //cout << myHero.getMoveRanking(1) << endl;
+    cout << "---------------------------" << endl;
+}
+
+void drawMap(int xPlayer, int yPlayer){
+    // Draw our picture with vectors
+    vector<string> map = {
+        "========================================================================================\n",
+        "|                                                                                      |\n",
+        "|                                                    *#%%#%%%%=                        |\n",
+        "|                                                    %###%%%#%%#                       |\n",
+        "|                                                     ########%                        |\n",
+        "|                                                                                      |\n",
+        "|                 ... .::.                                                             |\n",
+        "|              ..::::. .  .::.                                                         |\n",
+        "|               .=:...-...:.                                                           |\n",
+        "|                  :  ..                                                               |\n",
+        "|                ..:- .:..                                                             |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "|                                                          ::                          |\n",
+        "|                                                        ::   ::                       |\n",
+        "|                         O                             :      :                       |\n",
+        "|                        /|\\                            :      :                       |\n",
+        "|                        /\\                              ::  ::                        |\n",
+        "|                                                          ::                          |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "========================================================================================\n",
+    };
+
+    vector<string> playerOne{
+        "    %@",
+        " :%%%@@@===\n",   
+        " =@%====",
+        "   %@+"   
+    };
+
+    // Tree coordinates assigned explicitly
+    string tree[5] = {
+        "       .  .", // (1,0)
+        "      .==.", // (1,1)
+        "     .::::.", // (1,2)
+        "      :  :", // (1,3)
+        "     ..:.."  // (1,4)
+    };
+
+    // Print the map with the tree in the top-left corner
+    for(int y = 0; y < map.size(); y++){
+        for(int x = 0; x < map[y].length(); x++){
+            // Print the tree in its assigned coordinates
+            if (x >= 1 && x <= 9 && y >= 1 && y <= 5) {
+                cout << "\033[32m"; // Set text color to green
+                cout << tree[y - 1][x - 1];
+                cout << "\033[0m"; // Reset text color
+            } else {
+                cout << map[y][x];
+            }
+        }
+    }
+}
+
+int moveCharacter(){
+    // Variables
+    int xPlayer = 1;
+    int yPlayer = 1;
+    char userInput;
+    while(userInput != 'e'){
+        drawMap(xPlayer, yPlayer);
+        userInput = CharacterMenu("Press wasd to move, or e to exit", "wasde", "Invalid input");
+        switch(userInput){
+            case 'w':
+                yPlayer++;
+                break;
+            case 'a':
+                xPlayer--;
+                break;
+            case 's':
+                yPlayer--;
+                break;
+            case 'd':
+                xPlayer++;
+                break;
+        }
+    }
+    return 0;
+}
