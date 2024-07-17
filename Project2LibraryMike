@@ -30,18 +30,18 @@ void drawMap(int xPlayer, int yPlayer){
         "|                                                    %###%%%#%%#                       |\n",
         "|                                                     ########%                        |\n",
         "|                                                                                      |\n",
-        "|                 ... .::.                                                             |\n",
-        "|              ..::::. .  .::.                                                         |\n",
-        "|               .=:...-...:.                                                           |\n",
-        "|                  :  ..                                                               |\n",
-        "|                ..:- .:..                                                             |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
+        "|                                                                                      |\n",
         "|                                                                                      |\n",
         "|                                                                                      |\n",
         "|                                                          ::                          |\n",
         "|                                                        ::   ::                       |\n",
         "|                         O                             :      :                       |\n",
-        "|                        /|\\                            :      :                       |\n",
-        "|                        /\\                              ::  ::                        |\n",
+        "|                        /|\\                            :      :                      |\n",
+        "|                        /\\                              ::  ::                       |\n",
         "|                                                          ::                          |\n",
         "|                                                                                      |\n",
         "|                                                                                      |\n",
@@ -57,19 +57,21 @@ void drawMap(int xPlayer, int yPlayer){
     };
 
     // Tree coordinates assigned explicitly
-    string tree[5] = {
-        "       .  .", // (1,0)
-        "      .==.", // (1,1)
-        "     .::::.", // (1,2)
-        "      :  :", // (1,3)
-        "     ..:.."  // (1,4)
+    string tree[7] = {
+        "       _ ", // (1,0)
+        "      ...", // (1,1)
+        "      :::", // (1,2)
+        "     :::::", // (1,3)
+        "      :::", // (1,4)
+        "       :  ", // (1,5)
+        "     ..:.."  // (1,6)
     };
 
     // Print the map with the tree in the top-left corner
     for(int y = 0; y < map.size(); y++){
         for(int x = 0; x < map[y].length(); x++){
             // Print the tree in its assigned coordinates
-            if (x >= 1 && x <= 9 && y >= 1 && y <= 5) {
+            if (x >= 1 && x <= 10 && y >= 1 && y <= 7) {
                 cout << "\033[32m"; // Set text color to green
                 cout << tree[y - 1][x - 1];
                 cout << "\033[0m"; // Reset text color
@@ -80,28 +82,20 @@ void drawMap(int xPlayer, int yPlayer){
     }
 }
 
-int moveCharacter(){
-    // Variables
-    int xPlayer = 1;
-    int yPlayer = 1;
-    char userInput;
-    while(userInput != 'e'){
-        drawMap(xPlayer, yPlayer);
-        userInput = CharacterMenu("Press wasd to move, or e to exit", "wasde", "Invalid input");
-        switch(userInput){
-            case 'w':
-                yPlayer++;
-                break;
-            case 'a':
-                xPlayer--;
-                break;
-            case 's':
-                yPlayer--;
-                break;
-            case 'd':
-                xPlayer++;
-                break;
-        }
-    }
+
+int main() {
+    // Create instances of Hero and Resources
+    Hero myHero;
+    Resources myResources;
+
+    // Display initial stats
+    statsDisplay(myHero, myResources);
+
+    // Print the initial map
+    drawMap(1, 1); // Starting player coordinates
+
+    // Start moving the character
+    //moveCharacter();
+
     return 0;
 }
