@@ -82,6 +82,32 @@ void drawMap(int xPlayer, int yPlayer){
     }
 }
 
+int moveCharacter(){
+    //variables
+    int xPlayer = 1;
+    int yPlayer = 1;
+    char userInput;
+    while(userInput != 'e'){
+        drawMap(xPlayer, yPlayer);
+        userInput = CharacterMenu("Press wasd to move, or e to exit", "wasde", "Invalid input");
+        switch(userInput){
+            case 'w':
+                yPlayer++;
+                break;
+            case 'a':
+                xPlayer--;
+                break;
+            case 's':
+                yPlayer--;
+                break;
+            case 'd':
+                xPlayer++;
+                break;
+        }
+    }
+    return 0;
+}
+
 
 int main() {
     // Create instances of Hero and Resources
