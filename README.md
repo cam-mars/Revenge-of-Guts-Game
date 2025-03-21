@@ -1,5 +1,5 @@
-🗡️ The Revenge of Guts
-The Revenge of Guts is a story-driven survival game inspired by dark fantasy themes. You play as Guts, a lone warrior seeking vengeance. To prepare for your final showdown with Griffith, you must:
+#The Revenge of Guts
+The Revenge of Guts is a story-driven survival game inspired by the late Kentaro Miura's world-famous manga, Berserk. You play as Guts, a lone warrior seeking vengeance. To prepare for your final showdown with Griffith, you must:
 
 🔨 Gather vital resources
 ⚔️ Build your signature sword
